@@ -15,8 +15,8 @@ services:
     image: dpage/pgadmin4
     restart: always
     environment:
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
     ports:
       - '15432:80'
     depends_on:
