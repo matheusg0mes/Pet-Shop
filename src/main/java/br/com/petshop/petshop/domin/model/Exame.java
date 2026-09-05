@@ -1,5 +1,6 @@
 package br.com.petshop.petshop.domin.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.List;
 public class Exame {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nome", nullable = false)
@@ -28,6 +29,7 @@ public class Exame {
     private Double valorUnitario;
 
     @OneToMany(mappedBy = "exame",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("exame")
     private List<Item> itemList = new ArrayList<>();
 
 

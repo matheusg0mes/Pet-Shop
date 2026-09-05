@@ -21,7 +21,7 @@ import java.util.List;
 public class Atendimento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "numero", nullable = false)
@@ -55,6 +55,7 @@ public class Atendimento {
     private Pet pet;
 
     @OneToMany(mappedBy = "atendimento")
+    @JsonIgnoreProperties("atendimento")
     private List<Item> itemList = new ArrayList<>();
 
 
