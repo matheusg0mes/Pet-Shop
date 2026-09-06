@@ -1,5 +1,6 @@
 package br.com.petshop.petshop.domin.exceptions.handle;
 
+import br.com.petshop.petshop.domin.exceptions.exception.BadRequestException;
 import br.com.petshop.petshop.domin.exceptions.exception.CustomMenagerException;
 import br.com.petshop.petshop.domin.exceptions.exception.InternarServerErroException;
 import org.springframework.http.HttpHeaders;
@@ -42,5 +43,16 @@ public class HandlerGlobalException extends ResponseEntityExceptionHandler {
                 erros.put(erro.getField(), erro.getDefaultMessage()));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erros);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<CustomMenagerException> erro(BadRequestException ex, WebRequest request){
+
+        CustomMenagerException response = new CustomMenagerException(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
