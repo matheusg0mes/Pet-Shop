@@ -34,6 +34,7 @@ public class Atendimento {
     private LocalDate data;
 
     @Column(name = "status" , nullable = false)
+    @Enumerated(EnumType.STRING)
     private EnumStatusAtendimento status;
 
     @Column(name = "valor" , nullable = false)

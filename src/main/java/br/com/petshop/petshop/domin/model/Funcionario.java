@@ -34,6 +34,7 @@ public class Funcionario {
     private Integer telefone;
 
     @Column(name = "especializacao" , nullable = false)
+    @Enumerated(EnumType.STRING)
     private EnumCargo cargo;
 
     @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
