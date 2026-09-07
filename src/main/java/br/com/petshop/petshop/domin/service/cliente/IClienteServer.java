@@ -11,5 +11,7 @@ public interface IClienteServer {
 
     public ClienteResponseIdDTO getIdCliente(Long id);
 
+    public ClienteResponseIdDTO deleteCliente(Long id);
+
 }
 

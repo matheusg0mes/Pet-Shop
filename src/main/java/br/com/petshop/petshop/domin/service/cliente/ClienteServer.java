@@ -10,6 +10,7 @@ import br.com.petshop.petshop.domin.model.Cliente;
 import br.com.petshop.petshop.domin.repository.IClienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -18,6 +19,7 @@ public class ClienteServer implements IClienteServer {
 
     private IClienteRepository iClienteRepository;
 
+    @Transactional
     @Override
     public ClientDTOResponse saveCliente(ClienteRequestSaveDTO clienteRequestSaveDTO) {
 
@@ -32,6 +34,7 @@ public class ClienteServer implements IClienteServer {
         return clientedto;
     }
 
+
     @Override
     public ClienteResponseIdDTO getIdCliente(Long id) {
 
@@ -41,6 +44,13 @@ public class ClienteServer implements IClienteServer {
             ClienteResponseIdDTO clienteResponseIdDTO = MapperDTO.clienteToClienteResponseIdDTO(cliente1);
             return clienteResponseIdDTO;
 
+    }
+
+    @Override
+    public ClienteResponseIdDTO deleteCliente(Long id) {
+        ClienteResponseIdDTO clienteResponseIdDTO = getIdCliente(id);
+        iClienteRepository.deleteById(clienteResponseIdDTO.getId());
+        return clienteResponseIdDTO;
     }
 
 

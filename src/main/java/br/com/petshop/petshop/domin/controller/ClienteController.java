@@ -10,6 +10,8 @@ import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/cliente")
 @AllArgsConstructor
@@ -25,5 +27,11 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<ClienteResponseIdDTO> findIdCliente(@PathVariable Long id){
         return ResponseEntity.ok(iClienteServer.getIdCliente(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCliente(@PathVariable Long id){
+        ClienteResponseIdDTO clienteResponseIdDTO = iClienteServer.deleteCliente(id);
+        return ResponseEntity.ok("Cliente com id: " + clienteResponseIdDTO.getId() + " foi removido");
     }
 }
